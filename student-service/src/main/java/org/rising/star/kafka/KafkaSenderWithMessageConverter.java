@@ -7,7 +7,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.messaging.Message;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class KafkaSenderWithMessageConverter {
 
 	private final Logger LOG = LoggerFactory.getLogger(KafkaSenderWithMessageConverter.class);

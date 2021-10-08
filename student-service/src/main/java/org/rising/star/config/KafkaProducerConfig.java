@@ -33,7 +33,7 @@ class KafkaProducerConfig {
 
 	private final Logger LOG = LoggerFactory.getLogger(getClass());
 
-	@Value("${io.reflectoring.kafka.bootstrap-servers}")
+	@Value("${spring.kafka.consumer.bootstrap-servers}") 
 	private String bootstrapServers;
 
 	@Bean
@@ -41,6 +41,8 @@ class KafkaProducerConfig {
 		Map<String, Object> props = new HashMap<>();
 		props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
 		props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+		 props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
+			      StringSerializer.class);
 		return props;
 	}
 
@@ -57,7 +59,7 @@ class KafkaProducerConfig {
 		kafkaTemplate.setProducerListener(new ProducerListener<String, String>() {
 			@Override
 			public void onSuccess(ProducerRecord<String, String> producerRecord, RecordMetadata recordMetadata) {
-				LOG.info("ACK from ProducerListener message: {} offset:  {}", producerRecord.value(),
+				LOG.info("ACK from ProducerListener from KafkaProducerConfig message: {} offset:  {}", producerRecord.value(),
 						recordMetadata.offset());
 			}
 		});

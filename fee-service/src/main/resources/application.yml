@@ -15,3 +15,15 @@ eureka:
     
 spring:  devtools:    livereload:      enabled: true
   application:    name: fee-service
+    
+resilience4j:
+  retry:
+    instances:
+      studentSearch:
+        max-attempts: 4
+        waitDuration: 2s
+      throwingException:
+        max-attempts: 2
+        waitDuration: 2s
+        retryExceptions:
+          - java.lang.Exception

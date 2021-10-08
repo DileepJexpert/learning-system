@@ -6,19 +6,19 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.TopicBuilder;
 
-@Configuration
-class KafkaTopicConfig {
+//@Configuration
+public class KafkaTopicConfig {
 
-	@Value("${io.reflectoring.kafka.topic-1}")
+	@Value("${myapp.kafka.topic1}")
 	private String topic1;
 
-	@Value("${io.reflectoring.kafka.topic-2}")
+	@Value("${myapp.kafka.topic2}")
 	private String topic2;
 	
-	@Value("${io.reflectoring.kafka.topic-3}")
+	@Value("${myapp.kafka.topic3}")
 	private String topic3;
 	
-	@Value("${io.reflectoring.kafka.topic-4}")
+	@Value("${myapp.kafka.topic4}")
 	private String topic4;
 
 	@Bean
@@ -50,4 +50,27 @@ class KafkaTopicConfig {
 	NewTopic others() {
 		return TopicBuilder.name("reflectoring-others").build();
 	}
+	
+	@Bean
+	  public NewTopic topicExample() {
+	    return TopicBuilder.name("my-first-kafka-topic")
+	      .partitions(6)
+	      .replicas(3)
+	      .build();
+	  }
+	
+	@Bean
+	  public NewTopic compactTopicExample() {
+	    return TopicBuilder.name("my-first-compact-kafka-topic")
+	      .partitions(6)
+	      .replicas(3)
+	      .compact()
+	      .build();
+	  }
+	
+		/*
+		 * @Bean public NewTopic topicWithCompressionExample() { return
+		 * TopicBuilder.name("kafka-topic-with-compression") .partitions(6) .replicas(3)
+		 * .config(TopicConfig.COMPRESSION_TYPE_CONFIG, "zstd") .build(); }
+		 */
 }

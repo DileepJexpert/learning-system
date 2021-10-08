@@ -1,5 +1,5 @@
 server:
-  port: ${PORT:0}
+  port: ${PORT:8081}
 
 eureka:
   instance:
@@ -21,10 +21,19 @@ spring:  devtools:    livereload:      enabled: true
     consumer:
       bootstrap-servers: localhost:9092
       group-id: group-id
-      auto-offset-reset: earliest
+      auto-offset-reset: earliest 
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
     producer:
       bootstrap-servers: localhost:9092
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer    
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer  
+      
+myapp:
+    kafka:
+      topic: myKafkaTest
+      topic1: myKafkaTest1
+      topic2: myKafkaTest2
+      topic3: myKafkaTest3
+      topic4: myKafkaTest4
+   
